@@ -24,6 +24,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Terraform execution started on $(date)"
+      - ls -la "$CODEBUILD_SRC_DIR"
       - cd "$CODEBUILD_SRC_DIR/EC2-APP" || exit 1
       - ls -lrt
 
@@ -33,8 +34,8 @@ phases:
       - echo "Starting Terraform deployment..."
       - terraform init -input=false --backend-config=dev.conf
       - terraform validate
-      - terraform plan
-      - terraform ${TF_COMMAND} -auto-approve
+      - terraform plan -out=tfplan
+      - terraform ${TF_COMMAND} -auto-approve tfplan
 
   post_build:
     on-failure: CONTINUE
@@ -42,6 +43,7 @@ phases:
       - echo "Terraform execution completed on $(date)"
       - echo "Cleaning up temporary files..."
       - rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      - rm -f tfplan
 
 artifacts:
   files:
