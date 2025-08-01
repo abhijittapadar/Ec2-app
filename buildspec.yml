@@ -19,7 +19,6 @@ phases:
       - unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
       - mv terraform /usr/local/bin/
       - terraform --version
-      - chmod +x terraform
 
   pre_build:
     on-failure: ABORT
