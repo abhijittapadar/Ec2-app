@@ -24,9 +24,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Terraform execution started on $(date)"
-      - ls -la "$CODEBUILD_SRC_DIR"
-      - cd "$CODEBUILD_SRC_DIR/EC2-APP" || exit 1
-      - ls -lrt
+      - ls -lrt "$CODEBUILD_SRC_DIR"
 
   build:
     on-failure: ABORT
@@ -47,5 +45,5 @@ phases:
 
 artifacts:
   files:
-    - EC2-APP/**/*
+    - '**/*'
   discard-paths: no
