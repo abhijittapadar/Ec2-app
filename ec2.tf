@@ -45,8 +45,8 @@ resource "aws_instance" "app-server" {
 resource "aws_security_group" "allow" {
     name = "Allow HTTP"
     vpc_id = aws_vpc.Public.id
-}
-/*
+
+
     ingress {
     from_port   = 80
     to_port     = 80
@@ -64,8 +64,8 @@ resource "aws_security_group" "allow" {
       Name = "Allow HTTP"
     }  
 }
-*/
 
+/*
 resource "aws_vpc_security_group_ingress_rule" "http-Allow" {
   security_group_id = aws_security_group.allow.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -74,7 +74,7 @@ resource "aws_vpc_security_group_ingress_rule" "http-Allow" {
   to_port           = 80
   
 }
-
+*/
 resource "aws_internet_gateway" "Public-IGW" {
   vpc_id = aws_vpc.Public.id
 }
