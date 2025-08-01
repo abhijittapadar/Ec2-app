@@ -41,7 +41,6 @@ phases:
       - echo "Terraform execution completed on $(date)"
       - echo "Cleaning up temporary files..."
       - rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-      - rm -f tfplan
 
 artifacts:
   files:
