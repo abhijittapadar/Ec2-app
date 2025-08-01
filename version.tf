@@ -6,6 +6,10 @@ terraform {
       version = ">= 5.0"
     }
   }
-  backend "s3" {}
+  backend "s3" {
+    bucket = "remote-state-terra"
+    key = "remote-state-terra/dev/terraform.tfstate"
+    region = "ap-south-1"
+  }
   
 }
